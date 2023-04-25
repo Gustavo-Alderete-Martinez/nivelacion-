@@ -1,0 +1,28 @@
+import csv
+
+# Datos de los alumnos
+alumnos = [
+    ['001', 'Juan', 8.5, 9.0, 7.5],
+    ['002', 'Maria', 7.0, 8.5, 9.0],
+    ['003', 'Pedro', 9.0, 8.0, 9.5],
+    ['004', 'Luisa', 6.5, 7.5, 8.0],
+    ['005', 'Carlos', 8.0, 7.0, 9.0],
+    ['006', 'Ana', 9.5, 9.0, 10.0],
+    ['007', 'Sofia', 6.0, 7.0, 8.0],
+    ['008', 'Pablo', 7.5, 6.0, 8.5],
+    ['009', 'Julia', 8.0, 8.0, 8.0],
+    ['010', 'Miguel', 9.0, 8.5, 9.0]
+]
+
+# Calculamos el promedio de cada alumno y agregamos la columna 'promedio'
+for alumno in alumnos:
+    promedio = round(sum(alumno[2:]) / len(alumno[2:]), 2)
+    alumno.append(promedio)
+
+# Escribimos los datos en el archivo CSV
+with open('alumnos.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    # Escribimos la primera fila con los nombres de las columnas
+    writer.writerow(['matricula', 'nombre', 'unidad1', 'unidad2', 'unidad3', 'promedio'])
+    # Escribimos cada fila con los datos de cada alumno
+    writer.writerows(alumnos)
